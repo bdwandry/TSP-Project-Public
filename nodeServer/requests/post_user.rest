@@ -1,0 +1,7 @@
+POST http://localhost:5601/users
+Content-Type: application/json
+
+{
+    "content": "tämäkin käyttäjä",
+    "name": "mestari"
+}
