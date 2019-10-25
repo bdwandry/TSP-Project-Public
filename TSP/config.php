@@ -1,3 +1,9 @@
+<!-- 
+	 defines database server & connection
+	 defines ________ folder name???
+	 defines password for database
+	 defines database
+-->
 <?php
 	define('DB_SERVER', 'localhost:3036');
 	define('DB_SERVER', 'root');
