@@ -1,0 +1,28 @@
+{
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "description": "courseProject",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "jest --verbose"
+  },
+  "author": "Teemu Varsala",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "jsdoc": "^3.6.3",
+    "nodemon": "^1.19.4"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.5",
+    "serialport": "^8.0.5"
+  }
+}
