@@ -30,7 +30,7 @@ app.use('/users', usersRouter)
 app.use(errors.unknownEndpoint)
 app.use(errors.commonErrors)
 
-arduino.arduino()
+arduino.arduinoOpen()
 
 module.exports = app
 

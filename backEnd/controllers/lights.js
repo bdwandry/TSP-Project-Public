@@ -3,13 +3,14 @@ const udpHelper = require('../utils/udpHelper')
 const datagram = require('../UDP/datagram')
 const config = require('../utils/config')
 const Light = require('../models/lightSchema')
-
+const arduino = require('../UDP/serial')
 
 //get light info from database and
 //send all info of the lights back to the front-end
 
 lightsRouter.get('/', async (request, response) => {
     try {
+        
         const lights = await Light.find({})
         response.json(lights.map(l => l.toJSON()))
 
@@ -28,10 +29,25 @@ lightsRouter.get('/', async (request, response) => {
    
     const body = request.body
     try {
-        await Light.findOneAndUpdate({ roomNumber : body.roomNumber }, { $set : { state : body.state } }, { new : true}, (error, doc) => {
-            datagram.sendUDP(doc.toJSON())
-            response.send(doc.toJSON())
-        });
+        if (body.roomNumber == 7) {
+
+            await Light.updateMany({ }, { $set : { state : body.state } }, { new : true}, (error, doc) => {
+                arduino.arduinoSend(body.roomNumber, body.state)
+                response.send(doc)
+                
+            });
+        }
+
+        else {
+            await Light.findOneAndUpdate({ roomNumber : body.roomNumber }, { $set : { state : body.state } }, { new : true}, (error, doc) => {
+                //datagram.sendUDP(doc.toJSON())
+                
+                arduino.arduinoSend(body.roomNumber, body.state)
+                //response.send(doc.toJSON())
+                response.send("jjjkljk")
+            });
+        }
+        
 
    } catch (error) {
     next(error)
