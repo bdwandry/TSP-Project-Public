@@ -6,6 +6,7 @@ const errors = require('./utils/errorHandler')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
+const loginRouter = require('./controllers/login')
 const lightsRouter = require('./controllers/lights')
 const usersRouter = require('./controllers/users')
 const mongoose = require('mongoose')
@@ -23,6 +24,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 //take routes in use
+app.use('/login', loginRouter)
 app.use('/lights', lightsRouter)
 app.use('/users', usersRouter)
 
@@ -30,7 +32,7 @@ app.use('/users', usersRouter)
 app.use(errors.unknownEndpoint)
 app.use(errors.commonErrors)
 
-arduino.arduino()
+arduino.arduinoOpen()
 
 module.exports = app
 

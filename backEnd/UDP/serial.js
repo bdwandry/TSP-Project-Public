@@ -1,27 +1,33 @@
+const arduinoHelper = require('../utils/arduinoHelper')
 const SerialPort = require("serialport");
 const Readline = require('@serialport/parser-readline');
 
 const port = new SerialPort('COM6', { baudRate: 9600 });
 const parser = port.pipe(new Readline({ delimiter: '\n' }));
 
-const arduino = () => {
+const arduinoOpen = () => {
     port.on("open", () => {
-        console.log('open');
+        console.log('Serial connection on');
         parser.on('data', (data) => {
-          console.log(data);
+          arduinoHelper.lightChanges(data)
         });
     });
 }
 
-port.write('hello from node\n', (err) => {
+
+const arduinoSend = (roomNumber, state) => {
+
+  let lightToSwitch =  arduinoHelper.translateRoom(roomNumber, state)
+
+  port.write(lightToSwitch, (err) => {
     if (err) {
       return console.log('Error on write: ', err.message);
     }
-    console.log('message written');
   });
-
+}
 
 
 module.exports = {
-    arduino
+    arduinoOpen,
+    arduinoSend
 }
