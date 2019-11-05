@@ -2,8 +2,8 @@ POST http://localhost:5601/users
 Content-Type: application/json
 
 {
-    "userName": "teukka",
-    "email": "ttvarsal@mtu.edu",
-    "password": "enKerro",
-    "admin": "true" 
+    "userName": "testi",
+    "email": "t@testi",
+    "password": "salasana",
+    "admin": "false" 
 }

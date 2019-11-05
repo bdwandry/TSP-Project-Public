@@ -23,7 +23,7 @@ loginRouter.post('/', async (request, response) => {
                 _id: user._id
             }
 
-            const token = jToken.sign(userToken, 'salainen')
+            const token = jToken.sign(userToken, 'lousyEncryption')
 
             response.send({token, userName: user.userName, email: user.email})
 

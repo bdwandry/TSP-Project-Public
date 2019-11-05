@@ -43,7 +43,17 @@ usersRouter.post('/', async (request, response, next) => {
 })
 
 usersRouter.delete('/:user', async (request, response, next) => {
-    response.send('')
+    const body = request.body
+    await User.findOneAndRemove({userName: body.userName}, (error, docs) => {
+
+        if (docs) {
+            response.send(`${body.userName} deleted`)
+        } else {
+            response.send("userName doesn't exist")
+        }
+        next(error)
+    })
+    
 })
 
 
