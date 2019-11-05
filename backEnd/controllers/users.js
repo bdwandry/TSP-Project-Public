@@ -2,7 +2,7 @@ const usersRouter = require('express').Router()
 const User = require('../models/userSchema')
 const bcrypt = require('bcryptjs')
 
-//Client send a request to http://localhost:5601/users and
+//Client sends a request to http://localhost:5601/users
 //get returns all the users in json format
 
 usersRouter.get('/', async (request, response) => {
@@ -12,7 +12,7 @@ usersRouter.get('/', async (request, response) => {
 })
 
 
-//Client send a request to http://localhost:5601/users 
+//Client sends a request to http://localhost:5601/users 
 //request constains userName (string), email (string), password(string) and admin (boolean)
 
 usersRouter.post('/', async (request, response, next) => {
@@ -57,8 +57,8 @@ usersRouter.post('/', async (request, response, next) => {
 })
 
 
-//Client send a request to http://localhost:5601/users 
-//delete user by it's userName (string)
+//Client sends a request to http://localhost:5601/users 
+//delete a user by it's userName (string)
 
 usersRouter.delete('/:user', async (request, response, next) => {
     const body = request.body
