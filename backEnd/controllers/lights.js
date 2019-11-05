@@ -1,7 +1,5 @@
 const lightsRouter = require('express').Router()
 const udpHelper = require('../utils/udpHelper')
-const datagram = require('../UDP/datagram')
-const config = require('../utils/config')
 const Light = require('../models/lightSchema')
 const arduino = require('../UDP/serial')
 
@@ -27,6 +25,7 @@ lightsRouter.get('/', async (request, response) => {
 
  lightsRouter.put('/:roomNumber', async (request, response, next) => {
    
+    //save request body to the variable body (less writing) 
     const body = request.body
     try {
         if (body.roomNumber == 7) {
@@ -55,8 +54,6 @@ lightsRouter.get('/', async (request, response) => {
                 } else {
                     response.send(doc.toJSON())
                 }
-                
-                
                 
             });
         }

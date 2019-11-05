@@ -1,7 +1,11 @@
 
+
+//roomNumber and state comes from ../UDP/serial.js
+//function changes roomNumber and state for the commands which are used in arduino
 const translateRoom = (roomNumber, state) => {
     let conversion;
 
+    //When the request is to turn lights ON
     if (state == 'true') {
         switch (roomNumber) {
             case '1':
@@ -34,6 +38,7 @@ const translateRoom = (roomNumber, state) => {
         }
     }
     
+    //When the request is to turn lights ON
     else {
         switch (roomNumber) {
             case '1':

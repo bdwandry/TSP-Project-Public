@@ -1,4 +1,6 @@
 
+//NOT IN USE!!!
+
 const Light = require('../models/lightSchema')
 
 
