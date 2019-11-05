@@ -72,11 +72,11 @@ const translateRoom = (roomNumber, state) => {
 const lightChanges = (lightData) => {
     console.log(lightData)
     if (lightData.includes('ON', 10)) {
-        //console.log('SISÄLTÄÄ ON')
+        console.log('SISÄLTÄÄ ON')
     }
 
     else if (lightData.includes('OFF', 10)) {
-        //console.log('SISÄLTÄÄ OFF')
+        console.log('SISÄLTÄÄ OFF')
     }
 }
 
