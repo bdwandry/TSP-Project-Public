@@ -1,4 +1,5 @@
 const arduinoHelper = require('../utils/arduinoHelper')
+const Light = require('../models/lightSchema')
 const SerialPort = require("serialport");
 const Readline = require('@serialport/parser-readline');
 
@@ -10,12 +11,39 @@ const parser = port.pipe(new Readline({ delimiter: '\n' }));
 const arduinoOpen = () => {
     port.on("open", () => {
         console.log('Serial connection on');
-        parser.on('data', (data) => {
+        parser.on('data', async (data) => {
 
           //call lightChanges function in ../utils/arduinoHelper.js
-          arduinoHelper.lightChanges(data)
-        });
-    });
+          let lightObject = arduinoHelper.lightChanges(data)
+         
+          try {
+
+            if (lightObject.roomNumber == 1) {
+    
+                await Light.updateMany({ }, { $set : { state : lightObject.state } }, { new : true}, (error, doc) => {
+                  if (error) {
+                    console.log("eerrorr")
+                  }
+                })
+            }
+    
+            else if (lightObject.roomNumber >= 2) {
+    
+              Light.findOneAndUpdate({ roomNumber : lightObject.roomNumber }, { $set : { state : lightObject.state } }, { new : true}, (error, doc) => {
+                
+                if (error) {
+                  console.log("eerrorr2")
+                }
+               
+              })
+            }
+            
+          } catch (error) {
+            console.log(error)
+          }  
+          
+        })
+    })
 }
 
 
@@ -27,8 +55,8 @@ const arduinoSend = (roomNumber, state) => {
   let lightToSwitch =  arduinoHelper.translateRoom(roomNumber, state)
 
   //send info to arduino which light will be turned on/off
-  port.write(lightToSwitch, (err) => {
-    if (err) {
+  port.write(lightToSwitch, (error) => {
+    if (error) {
       return console.log('Error on write: ', err.message);
     }
   });

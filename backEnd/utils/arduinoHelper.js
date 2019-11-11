@@ -8,7 +8,7 @@ const translateRoom = (roomNumber, state) => {
     //When the request is to turn lights ON
     if (state == 'true') {
         switch (roomNumber) {
-            case '1':
+            case '7':
                 conversion = 'w'
                 break
     
@@ -41,7 +41,7 @@ const translateRoom = (roomNumber, state) => {
     //When the request is to turn lights ON
     else {
         switch (roomNumber) {
-            case '1':
+            case '7':
                 conversion = 's'
                 break
     
@@ -75,13 +75,27 @@ const translateRoom = (roomNumber, state) => {
 }
 
 const lightChanges = (lightData) => {
-    console.log(lightData)
-    if (lightData.includes('ON', 10)) {
-        console.log('SISÄLTÄÄ ON')
+    
+    let roomNumberr = lightData.split(' ')
+    
+    if (lightData.includes('ON', 9)) {
+        
+        const lightObject = {
+            roomNumber: Number(roomNumberr[1]),
+            state: true
+        }
+
+        return lightObject
     }
 
-    else if (lightData.includes('OFF', 10)) {
-        console.log('SISÄLTÄÄ OFF')
+    else if (lightData.includes('OFF', 9)) {
+
+        const lightObject = {
+            roomNumber: Number(roomNumberr[1]),
+            state: false
+        }
+
+        return lightObject
     }
 }
 
