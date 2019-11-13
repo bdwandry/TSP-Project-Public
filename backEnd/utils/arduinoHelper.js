@@ -8,27 +8,28 @@ const translateRoom = (roomNumber, state) => {
     //When the request is to turn lights ON
     if (state == 'true') {
         switch (roomNumber) {
-            case '7':
-                conversion = 'w'
-                break
-    
+            
             case '2':
-                conversion = 'e'
+                conversion = 'w'
                 break
 
             case '3':
-                conversion = 'r'
+                conversion = 'e'
                 break
 
             case '4':
-                conversion = 't'
+                conversion = 'r'
                 break
 
             case '5':
-                conversion = 'y'
+                conversion = 't'
                 break
 
             case '6':
+                conversion = 'y'
+                break
+
+            case '7':
                 conversion = 'u'
                 break
 
@@ -41,27 +42,29 @@ const translateRoom = (roomNumber, state) => {
     //When the request is to turn lights ON
     else {
         switch (roomNumber) {
-            case '7':
-                conversion = 's'
-                break
+            
     
             case '2':
-                conversion = 'd'
+                conversion = 's'
                 break
 
             case '3':
-                conversion = 'f'
+                conversion = 'd'
                 break
 
             case '4':
-                conversion = 'g'
+                conversion = 'f'
                 break
 
             case '5':
-                conversion = 'h'
+                conversion = 'g'
                 break
 
             case '6':
+                conversion = 'h'
+                break
+
+            case '7':
                 conversion = 'j'
                 break
 
