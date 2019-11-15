@@ -17,7 +17,7 @@ loginRouter.post('/', async (request, response) => {
     
     //response if user doesn't exist
     if (user === null) {
-        response.send('userName not found')
+        response.status(404).send('userName not found')
 
     } else {
 
@@ -35,9 +35,9 @@ loginRouter.post('/', async (request, response) => {
 
             response.send({token, userName: user.userName, email: user.email})
 
-        //Or if password isn't correct, send "wrong password" to client    
+        //Or if password isn't correct, send "wrong password" and error code 404 to client    
         } else {
-            response.send("Wrong password")
+            response.status(404).end("Wrong password")
         }
     }
 })

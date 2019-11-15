@@ -3,5 +3,5 @@ Content-Type: application/json
 
 {
     "state" : "true",
-    "roomNumber" : "7"
+    "roomNumber" : "6"
 }

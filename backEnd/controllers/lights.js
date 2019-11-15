@@ -23,45 +23,25 @@ lightsRouter.get('/', async (request, response) => {
 //send data to arduino as well
 //and send response back to front-end 
 
- lightsRouter.put('/:roomNumber', async (request, response, next) => {
+ lightsRouter.put('/:roomNumber', (request, response, next) => {
    
     //save request body to the variable body (less writing) 
     const body = request.body
-    try {
-        if (body.roomNumber == 7) {
+    const delay = 1000
 
-            await Light.updateMany({ }, { $set : { state : body.state } }, { new : true}, (error, doc) => {
-                arduino.arduinoSend(body.roomNumber, body.state)
-                
-                if(doc === undefined) {
-                    response.send("incorrect query")
+    arduino.arduinoSend(body.roomNumber, body.state)
 
-                } else {
-                    response.send(doc.toJSON())
-                }
-
-            });
+    setTimeout( async () => {
+       const lightFound =  await Light.findOne({ roomNumber : body.roomNumber})
+       
+        if (lightFound.state != body.state) {
+            response.send("state changed")
+        } else {
+            response.send("nonono")
         }
 
-        else {
-            await Light.findOneAndUpdate({ roomNumber : body.roomNumber }, { $set : { state : body.state } }, { new : true}, (error, doc) => {
-                //datagram.sendUDP(doc.toJSON())
-                
-                arduino.arduinoSend(body.roomNumber, body.state)
-                
-                if(doc === undefined) {
-                    response.send("incorrect query")
-                } else {
-                    response.send(doc.toJSON())
-                }
-                
-            });
-        }
-        
+    }, delay);
 
-   } catch (error) {
-    next(error)
-   }  
  })
 
 
