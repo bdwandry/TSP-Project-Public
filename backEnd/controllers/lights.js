@@ -31,7 +31,7 @@ lightsRouter.get('/', async (request, response) => {
 
     arduino.arduinoSend(body.roomNumber, body.state)
 
-    setTimeout( async () => {
+    setTimeout( async() => {
        const lightFound =  await Light.findOne({ roomNumber : body.roomNumber})
        
         if (lightFound.state != body.state) {
