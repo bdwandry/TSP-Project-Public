@@ -1,0 +1,65 @@
+
+Left side in "json format" examples has to be
+excatly the same. Right side is just what you choose.
+
+
+login:
+	Send POST reguest to:
+		http://localhost:5601/login
+	
+	which includes payload in json format:
+	(example)
+		"userName": "someUsername",
+    		"password": "somePassword"	
+
+
+------------------------------------------------------
+
+
+create user:
+	Send POST reguest to:	
+		http://localhost:5601/users
+
+	which includes payload in json format:
+	(example)
+	
+	"userName": "TEST",
+   	"email": "test@test",
+    	"password": "password123",
+    	"admin": "false" 
+
+delete user:
+
+	Send DELETE reguest to:	
+		http://localhost:5601/users/{user}
+
+	which includes payload in json format:
+	(example)
+	
+	"userName": "TEST",
+   	
+
+------------------------------------------------------
+
+LIGHTS
+
+get all the lights:
+
+	Send GET request to:
+		http://localhost:5601/lights
+	
+	(nothing else needed)
+
+
+turn on/off lights:
+
+	Send PUT request to:
+		http://localhost:5601/lights/1
+
+	which includes payload in json format:
+	(example)
+
+	"state" : "true",
+    	"roomNumber" : "5"
+
+
