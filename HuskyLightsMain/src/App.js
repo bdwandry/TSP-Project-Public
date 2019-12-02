@@ -43,12 +43,14 @@ class App extends Component {
         <div className="body">
           <table id="light_table" border="1">
             <tr>
+              <th>Light Type</th>
               <th>Light Location</th>
               <th>Power Usage</th>
               <th>Total Active Hours</th>
               <th>Switch</th>
             </tr>
             <tr>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
