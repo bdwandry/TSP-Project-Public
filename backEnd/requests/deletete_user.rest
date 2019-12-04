@@ -2,5 +2,5 @@ DELETE http://localhost:5601/users/testi
 Content-Type: application/json
 
 {
-    "userName": "teukka"
+    "userName": "testi"
 }
