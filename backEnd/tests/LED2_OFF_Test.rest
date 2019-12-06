@@ -1,7 +1,0 @@
-PUT http://localhost:5601/lights/1
-Content-Type: application/json
-
-{
-    "state" : "false",
-    "roomNumber" : "2"
-}

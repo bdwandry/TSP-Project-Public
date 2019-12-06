@@ -5,9 +5,16 @@ const bcrypt = require('bcryptjs')
 //Client sends a request to http://localhost:5601/users
 //get returns all the users in json format
 
-usersRouter.get('/', async (request, response) => {
-    const users = await User.find({})
-    response.json(users.map(u => u.toJSON()))
+usersRouter.get('/', async (request, response, next) => {
+    
+    try {
+        const users = await User.find({})
+        response.json(users.map(u => u.toJSON()))
+    
+    } catch (error) {
+        next(error)
+    }
+    
     
 })
 
@@ -51,9 +58,7 @@ usersRouter.post('/', async (request, response, next) => {
             //if error occurs, it will be forwarded to ../utils/errorHandler.js
             next(error)
         }
-
     }
-
 })
 
 
