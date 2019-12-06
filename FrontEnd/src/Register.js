@@ -10,9 +10,9 @@ class Register extends Component {
   constructor(props){
     super(props);
     this.state={
-      first_name:'',
-      last_name:'',
+      userName:'',
       email:'',
+      admin:'',
       password:''
     }
   }
@@ -20,19 +20,19 @@ class Register extends Component {
     console.log("nextProps",nextProps);
   }
   handleClick(event,role){
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://localhost:5601/";
     // console.log("values in register handler",role);
     var self = this;
     //To be done:check for empty values before hitting submit
-    if(this.state.first_name.length>0 && this.state.last_name.length>0 && this.state.email.length>0 && this.state.password.length>0){
+    if(this.state.userName.length>0 && this.state.email.length>0 && this.state.admin.length>0 && this.state.password.length>0){
       var payload={
-      "first_name": this.state.first_name,
-      "last_name":this.state.last_name,
-      "userid":this.state.email,
+      "userName": this.state.first_name,
+      "email":this.state.last_name,
+      "admin":this.state.email,
       "password":this.state.password,
-      "role":role
+      
       }
-      axios.post(apiBaseUrl+'/register', payload)
+      axios.post(apiBaseUrl+'/users', payload)
      .then(function (response) {
        console.log(response);
        if(response.data.code === 200){
@@ -78,15 +78,15 @@ class Register extends Component {
              title="Register"
            />
            <TextField
-             hintText="Enter your First Name"
-             floatingLabelText="First Name"
-             onChange = {(event,newValue) => this.setState({first_name:newValue})}
+             hintText="Enter your username"
+             floatingLabelText="username"
+             onChange = {(event,newValue) => this.setState({userName:newValue})}
              />
            <br/>
            <TextField
-             hintText="Enter your Last Name"
-             floatingLabelText="Last Name"
-             onChange = {(event,newValue) => this.setState({last_name:newValue})}
+             hintText="Enter your admin status"
+             floatingLabelText="temporary"
+             onChange = {(event,newValue) => this.setState({admin:newValue})}
              />
            <br/>
            <TextField

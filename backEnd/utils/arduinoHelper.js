@@ -79,14 +79,16 @@ const translateRoom = (roomNumber, state) => {
 
 const lightChanges = (lightData) => {
     
-    let roomNumberr = lightData.split(' ')
+    let roomNumber = lightData.split(' ')
+    
     
     if (lightData.includes('ON', 9)) {
         
         const lightObject = {
-            roomNumber: Number(roomNumberr[1]),
+            roomNumber: Number(roomNumber[1]),
             state: true
         }
+
 
         return lightObject
     }
@@ -94,7 +96,7 @@ const lightChanges = (lightData) => {
     else if (lightData.includes('OFF', 9)) {
 
         const lightObject = {
-            roomNumber: Number(roomNumberr[1]),
+            roomNumber: Number(roomNumber[1]),
             state: false
         }
 

@@ -4,9 +4,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import Login from './Login';
 import Register from './Register';
+import { black } from 'material-ui/styles/colors';
 
 const style = {
   margin: 15,
+  color: black,
 };
 
 class Loginscreen extends Component {

@@ -15,11 +15,10 @@ const arduinoOpen = () => {
 
           //call lightChanges function in ../utils/arduinoHelper.js
           let lightObject = arduinoHelper.lightChanges(data)
-         
+  
           try {
 
-            if (lightObject.roomNumber == 1) {
-    
+            if (lightObject.roomNumber === 1) {
                 await Light.updateMany({ }, { $set : { state : lightObject.state } }, { new : true}, (error, doc) => {
                   if (error) {
                     console.log("eerrorr")
@@ -27,14 +26,13 @@ const arduinoOpen = () => {
                 })
             }
     
+
             else if (lightObject.roomNumber >= 2) {
-    
-              Light.findOneAndUpdate({ roomNumber : lightObject.roomNumber }, { $set : { state : lightObject.state } }, { new : true}, (error, doc) => {
+              await Light.findOneAndUpdate({ roomNumber : lightObject.roomNumber }, { $set : { state : lightObject.state } }, { new : true}, (error, doc) => {
                 
                 if (error) {
                   console.log("eerrorr2")
                 }
-               
               })
             }
             

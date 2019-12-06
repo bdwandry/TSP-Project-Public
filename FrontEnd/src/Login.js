@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
@@ -8,6 +8,20 @@ import MenuItem from 'material-ui/MenuItem';
 var apiBaseUrl = "http://localhost:4000/api/";
 import axios from 'axios';
 import UploadPage from './UploadPage';
+
+
+const theme1 = createMuiTheme({
+  overrides: {
+    Button: {
+      root:  {
+        borderRadius: 10
+      }
+    }
+  }
+}) 
+
+
+
 class Login extends Component {
   constructor(props){
     super(props);
@@ -182,10 +196,18 @@ class Login extends Component {
   render() {
     return (
       <div>
+
         <MuiThemeProvider>
+
+        <ThemeProvider>
         <AppBar
-             title="Login"
-           />
+          title="Loginsss"
+          
+          primary={true}
+        />
+        </ThemeProvider>
+
+          
         </MuiThemeProvider>
         <MuiThemeProvider>
         <div>

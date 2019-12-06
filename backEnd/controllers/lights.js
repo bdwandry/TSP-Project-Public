@@ -23,24 +23,31 @@ lightsRouter.get('/', async (request, response) => {
 //send data to arduino as well
 //and send response back to front-end 
 
- lightsRouter.put('/:roomNumber', (request, response, next) => {
+ lightsRouter.put('/', (request, response, next) => {
    
     //save request body to the variable body (less writing) 
     const body = request.body
-    const delay = 1000
+    const delay = 100
 
-    arduino.arduinoSend(body.roomNumber, body.state)
+    try {
+        arduino.arduinoSend(body.roomNumber, body.state)
 
-    setTimeout( async () => {
-       const lightFound =  await Light.findOne({ roomNumber : body.roomNumber})
-       
-        if (lightFound.state != body.state) {
-            response.send("state changed")
-        } else {
-            response.send("nonono")
-        }
+        setTimeout(  () => {
+        const lightFound = Light.findOne({ roomNumber : body.roomNumber})
+        
+            if (lightFound.state != body.state) {
+                response.send("state changed")
+            } else {
+                response.send("nonono")
+            }
 
-    }, delay);
+        }, delay);
+
+
+    } catch (error) {
+        next(error)
+    }
+        
 
  })
 
