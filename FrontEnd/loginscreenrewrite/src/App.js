@@ -1,23 +1,46 @@
 import React, { Component } from 'react';
 import './App.css';
 import './bb.css'
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 class App extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            counter: 0
+            counter: 0,
+            username: "",
+            password: "",
+            passwordCheck: "",
+            email: ""
+        };
+
+        this.switchCounter = this.switchCounter.bind(this);
+        this.log = this.log.bind(this);
+        this.donotmatch = this.donotmatch.bind(this);
+    }
+
+    log() {
+        console.log("Username: " + this.state.username);
+        console.log("Password: " + this.state.password);
+        console.log("PasswordCheck: " + this.state.passwordCheck);
+        console.log("Email: " + this.state.email);
+    }
+
+    donotmatch() {
+        if (this.state.password !== this.state.passwordCheck) {
+            alert("Passwords don't match")
         }
-        this.switchCounter = this.switchCounter.bind(this)
     }
 
     switchCounter() {
+        this.state.username="";
+        this.state.password="";
+        this.state.passwordCheck="";
+        this.state.email="";
         if (this.state.counter === 1) {
             this.setState({
                 counter: this.state.counter = 0
@@ -28,7 +51,6 @@ class App extends Component {
             })
         }
     }
-
 
 
     render() {
@@ -50,20 +72,25 @@ class App extends Component {
 
                         <div>
                             <TextField
-                            id="filled-basic"
+                            id="filled-basic-Login"
                             variant="filled"
                             label="Username"
-                            placeholder={"Enter a Username"}
+                            value={this.state.username}
+                            onChange={e => this.setState({ username: e.target.value })}
+                            onClick={this.log()}
                         />
                         </div>
                         <br/>
                         <div>
                         <TextField
-                            id="filled-basic"
+                            id="filled-basic-Login"
                             type="Password"
                             variant="filled"
                             label="Password"
                             placeholder={"Enter a Password"}
+                            value={this.state.password}
+                            onChange={e => this.setState({ password: e.target.value })}
+                            onClick={this.log()}
                         />
                         </div>
                         <br/>
@@ -79,8 +106,7 @@ class App extends Component {
                         <Button variant="contained" style={{ backgroundColor: '#ffbf00'}} onClick={this.switchCounter}>Sign-Up</Button>
                         </div>
                     </div>
-                </MuiThemeProvider>
-            )
+                </MuiThemeProvider>)
         }
 
         //Register Screen
@@ -101,10 +127,13 @@ class App extends Component {
 
                         <div>
                             <TextField
-                                id="filled-basic"
+                                id="filled-basic-Register"
                                 variant="filled"
                                 label="Username"
                                 placeholder={"Enter a Username"}
+                                value={this.state.username}
+                                onChange={e => this.setState({ username: e.target.value })}
+                                onClick={this.log()}
                             />
                         </div>
 
@@ -117,6 +146,9 @@ class App extends Component {
                                 variant="filled"
                                 label="Password"
                                 placeholder={"Enter a Password"}
+                                value={this.state.password}
+                                onChange={e => this.setState({ password: e.target.value })}
+                                onClick={this.log()}
                             />
                         </div>
 
@@ -129,6 +161,9 @@ class App extends Component {
                             variant="filled"
                             label="Re-Type Password"
                             placeholder={"Re-Type Password"}
+                            value={this.state.passwordCheck}
+                            onChange={e => this.setState({ passwordCheck: e.target.value })}
+                            onClick={this.log()}
                         />
                     </div>
 
@@ -140,13 +175,16 @@ class App extends Component {
                                 variant="filled"
                                 label="Email"
                                 placeholder={"Enter a Email"}
+                                value={this.state.email}
+                                onChange={e => this.setState({ email: e.target.value })}
+                                onClick={this.log()}
                             />
                         </div>
 
                         <br/>
 
                         <div>
-                            <Button variant="contained" style={{ backgroundColor: '#ffbf00'}}>Sign-Up</Button>
+                            <Button variant="contained" style={{ backgroundColor: '#ffbf00'}} onClick={this.donotmatch}>Sign-Up</Button>
                         </div>
 
                         <br/>
