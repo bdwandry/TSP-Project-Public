@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +16,7 @@ class App extends Component {
             username: "",
             password: "",
             passwordCheck: "",
-            email: ""
+            email: "",
         };
 
         this.switchCounter = this.switchCounter.bind(this);
