@@ -30,7 +30,7 @@ app.use('/users', usersRouter)
 
 //Middlewares for handling errors 
 app.use(errors.unknownEndpoint)
-app.use(errors.commonErrors)
+app.use(errors.Errors)
 
 arduino.arduinoOpen()
 

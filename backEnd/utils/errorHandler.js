@@ -28,7 +28,7 @@ const Errors = (error, request, response, next) => {
       next(error)
     }
 
-}
+
 
 
 module.exports = {
