@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import './bb.css'
+import './bb.css';
+import MainPage from "./MainPage";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +19,7 @@ class App extends Component {
             password: "",
             passwordCheck: "",
             email: "",
+            login: false
         };
 
         this.switchCounter = this.switchCounter.bind(this);
@@ -43,7 +45,10 @@ class App extends Component {
         axios.post('http://localhost:5601/login', {userName: this.state.username, password: this.state.password})
             .then(res => {
                 console.log(res);
-            })
+                this.setState({
+                    counter: this.state.counter = 2
+                })
+            });
     }
 
     signup() {
@@ -229,6 +234,14 @@ class App extends Component {
                         </div>
                     </div>
                 </MuiThemeProvider>
+            )
+        }
+
+        if (this.state.counter === 2) {
+            return (
+                <div>
+                    <MainPage username={this.state.username} counter={this.state.counter}/>
+                </div>
             )
         }
     }
