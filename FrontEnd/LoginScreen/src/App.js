@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 class App extends Component {
@@ -22,6 +23,36 @@ class App extends Component {
         this.switchCounter = this.switchCounter.bind(this);
         this.log = this.log.bind(this);
         this.donotmatch = this.donotmatch.bind(this);
+        this.login = this.login.bind(this);
+        this.signup = this.signup.bind(this);
+    }
+
+    donotmatch() {
+        if (this.state.password !== this.state.passwordCheck) {
+            alert("Passwords don't match")
+        } else if (this.state.username === "" || this.state.password === "" || this.state.passwordCheck === "" || this.state.email === "") {
+            alert("Some or All Text-Fields are Empty. Please Fill them out.")
+        } else {
+            this.signup()
+        }
+    }
+
+    login() {
+        console.log(this.state.username);
+        console.log(this.state.password);
+        axios.post('http://localhost:5601/login', {userName: this.state.username, password: this.state.password})
+            .then(res => {
+                console.log(res);
+            })
+    }
+
+    signup() {
+        console.log(this.state.username);
+        console.log(this.state.password);
+        axios.post('http://localhost:5601/users', {userName: this.state.username, email: this.state.email, password: this.state.password, admin: "false"})
+            .then(res => {
+                console.log(res);
+            })
     }
 
     log() {
@@ -29,12 +60,6 @@ class App extends Component {
         console.log("Password: " + this.state.password);
         console.log("PasswordCheck: " + this.state.passwordCheck);
         console.log("Email: " + this.state.email);
-    }
-
-    donotmatch() {
-        if (this.state.password !== this.state.passwordCheck) {
-            alert("Passwords don't match")
-        }
     }
 
     switchCounter() {
@@ -96,7 +121,10 @@ class App extends Component {
                         </div>
                         <br/>
                         <div>
-                            <Button variant="contained" style={{ backgroundColor: '#ffbf00'}}>Login</Button>
+                            <Button variant="contained"
+                                    style={{ backgroundColor: '#ffbf00'}}
+                                    onClick={this.login}
+                            >Login</Button>
                         </div>
                         <br/>
                         <div>
