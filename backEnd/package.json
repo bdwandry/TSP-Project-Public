@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "courseProject",
   "main": "index.js",
-
   "directories": {
     "test": "test"
   },
-
   "scripts": {
     "start": "node index.js",
     "watch": "nodemon index.js",
@@ -32,6 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.5",
     "mongoose-unique-validator": "^2.0.3",
+    "node-pre-gyp": "^0.14.0",
     "serialport": "^8.0.5"
   }
 }
