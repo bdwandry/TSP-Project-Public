@@ -2,6 +2,6 @@ PUT http://localhost:5601/lights/
 Content-Type: application/json
 
 {
-    "state" : "false",
-    "roomNumber" : "4"
+    "state" : "true",
+    "roomNumber" : "1"
 }
