@@ -141,7 +141,7 @@ class App extends Component {
                         <br/>
                         <div>
                         <TextField
-                            id="filled-basic-Login"
+                            id="filled-basic-Password"
                             type="Password"
                             variant="filled"
                             label="Password"
@@ -188,7 +188,7 @@ class App extends Component {
 
                         <div>
                             <TextField
-                                id="filled-basic-Register"
+                                id="filled-basic-Register-Username"
                                 variant="filled"
                                 label="Username"
                                 placeholder={"Enter a Username"}
@@ -202,7 +202,7 @@ class App extends Component {
 
                         <div>
                             <TextField
-                                id="filled-basic"
+                                id="filled-basic-Register-Password"
                                 type="Password"
                                 variant="filled"
                                 label="Password"
@@ -217,7 +217,7 @@ class App extends Component {
 
                         <div>
                         <TextField
-                            id="filled-basic"
+                            id="filled-basic-Register-PasswordCheck"
                             type="password"
                             variant="filled"
                             label="Re-Type Password"
@@ -232,7 +232,7 @@ class App extends Component {
 
                         <div>
                             <TextField
-                                id="filled-basic"
+                                id="filled-basic-Register-Email"
                                 variant="filled"
                                 label="Email"
                                 placeholder={"Enter a Email"}
@@ -245,7 +245,7 @@ class App extends Component {
                         <br/>
 
                         <div>
-                            <Button variant="contained" style={{ backgroundColor: '#ffbf00'}} onClick={this.checkingSignUp}>Sign-Up</Button>
+                            <Button id={"Sign-Up-Register-Button"} variant="contained" style={{ backgroundColor: '#ffbf00'}} onClick={this.checkingSignUp}>Sign-Up</Button>
                         </div>
 
                         <br/>

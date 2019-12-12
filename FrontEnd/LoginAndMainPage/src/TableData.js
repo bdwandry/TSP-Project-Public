@@ -108,7 +108,7 @@ function createData(LightID, RoomNumber, Switches) {
 }
 
 let rows = [
-    createData('All Lights', "Light Location: All", <Switch onChange={AllLights}/>),
+    createData('All Lights', "Light Location: All", <Switch  onChange={AllLights}/>),
     createData('5db7ac181c9d440000a1da98', "Light Location: 2",<Switch id={"LED2"} onChange={lightTwo} />),
     createData('5db7ac661c9d440000a1da9a', "Light Location: 3",<Switch id={"LED3"} onChange={lightThree} />),
     createData('5db7ac8f1c9d440000a1da9c', "Light Location: 4",<Switch id={"LED4"} onChange={lightsFour}/>),
@@ -123,9 +123,9 @@ export default function DataTable() {
 
     return (
         <Paper className={classes.root}>
-            <Table aria-label="simple table">
-                <TableHead style={{backgroundColor: '#D3D3D3', fontSize: "h5"}}>
-                    <TableRow>
+            <Table>
+                <TableHead style={{backgroundColor: '#D3D3D3'}}>
+                    <TableRow >
                         <TableCell variant="h5" align="center">Light ID</TableCell>
                         <TableCell variant="h5" align="center">Location</TableCell>
                         <TableCell variant="h5" align="center">Switches</TableCell>
