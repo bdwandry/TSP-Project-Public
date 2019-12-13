@@ -1,0 +1,1 @@
+The Arduino is working perfectly. We were unable to find a testing suite for the Arduino board itself. So we've put together a document showing all of the serial outputs. 
